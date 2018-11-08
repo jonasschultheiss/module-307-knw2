@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>module-307-knw2</title>
+</head>
+<body>
+<div class="header">
+    <h1>module-307-knw2</h1>
+    <hr>
+    <br>
+</div>
+<div class="all">
+    <form action="endpoint.php" method="post">
+        <div class="section">
+            <div class="item">
+                <p>From</p>
+                <label>
+                    <input class="input" type="text" name="from" required>
+                </label>
+            </div>
+            <div class="item">
+                <p>To</p>
+                <label>
+                    <input class="input" type="text" name="to" required>
+                </label>
+            </div>
+        </div>
+        <div class="section">
+            <div class="item">
+                <p>Via (comma separated e.g. Olten,Lugano)</p>
+                <label>
+                    <input class="input" type="text" name="via">
+                </label>
+            </div>
+            <div class="item">
+                <p>Date and time</p>
+                <label>
+                    <input type="radio" name="date_time_info" value="depart" checked>
+                </label> Depart<br>
+                <label>
+                    <input type="radio" name="date_time_info" value="arrive">
+                </label> Arrive<br>
+                <label>
+                    <input class="input" type="datetime-local" name="date_time">
+                </label>
+            </div>
+            <div class="section">
+                <p>Show connections for selected vehicles</p>
+                <label>
+                    <input type="checkbox" name="train" value="train" checked>
+                </label> Train
+                <label>
+                    <input type="checkbox" name="tram" value="tram" checked>
+                </label> Tram
+                <label>
+                    <input type="checkbox" name="bus" value="bus" checked>
+                </label> Bus
+                <label>
+                    <input type="checkbox" name="ship" value="ship" checked>
+                </label> Ship
+                <label>
+                    <input type="checkbox" name="cableway" value="cableway" checked>
+                </label> Cableway<br>
+            </div>
+        </div>
+        <button type="submit">Find connections</button>
+    </form>
+</div>
+</body>
+</html>
