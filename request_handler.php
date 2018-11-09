@@ -12,30 +12,57 @@
 
 // $body = json_decode(file_get_contents($url), true);
 
-function parse_data_to_url($from, $to, $via, $date_time_info = "", $date_time = "", $transportation_types = "")
+function parse_data_to_url($from, $to, $via, $date_time_info = "", $date = "", $time = "", $transportation_types = "")
 {
-    static $base_url = "https://fahrplan.search.ch/api/route.json?";
-    $base_url .= "from='" . urlencode($from) . "\'&";
-    $base_url .= "to='" . urlencode($to) . "\'&";
+    $base_url = "https://fahrplan.search.ch/api/route.json?";
+    $base_url .= "from=" . urlencode($from) . "&";
+    $base_url .= "to=" . urlencode($to) . "&";
     if ($via !== "") {
-        foreach ($via as $key => $value) {
-
-        }
+        $base_url .= via_formatter($via);
     }
+    if ($date_time_info === "" || $date_time_info === "depart") {
+    } else {
+        $base_url .= "time_type=" . urlencode($date_time_info) . "&";
+    }
+    if ($date === "" && $time === "") {
+        $date = new DateTime();
+        $date->modify("+15 minutes");
+        $date = $date->format('H:i');
+        $base_url .= "time=" . urlencode(date("H:i", strtotime($date))) . "&";
+    } else {
+        $base_url .= "date=" . urlencode("11/09/2018") . "&";
+        $base_url .= "time=" . urlencode($time) . "&";
+    }
+    $base_url .= urlencode($transportation_types) . "&";
+    $base_url .= "show_delays=1&";
+    $base_url .= "num=6&";
+
+    return $base_url;
 }
 
 function via_to_array($via = "")
 {
     if ($via === "") {
-        return "";
+        return [];
     } else {
         return explode(",", $via);
     }
 }
 
+function via_formatter($via_array)
+{
+    $final_string = "";
+    foreach ($via_array as $key => $value) {
+        $value = urlencode($value);
+        $final_string .= "via[]=$value&";
+    }
+
+    return $final_string;
+}
+
 function transportation_types_formatter($train = "", $tram = "", $bus = "", $ship = "", $cableway = "")
 {
-    static $final_string = "";
+    $final_string = "";
     $final_string .= $train !== "" ? $train . "," : "";
     $final_string .= $tram !== "" ? $tram . "," : "";
     $final_string .= $bus !== "" ? $bus . "," : "";
