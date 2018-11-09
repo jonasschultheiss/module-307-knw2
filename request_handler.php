@@ -36,6 +36,7 @@ function parse_data_to_url($from, $to, $via, $date_time_info = "", $date = "", $
     $base_url .= urlencode($transportation_types) . "&";
     $base_url .= "show_delays=1&";
     $base_url .= "num=6&";
+    $base_url .= "show_trackchanges=1";
 
     return $base_url;
 }
