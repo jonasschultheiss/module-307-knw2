@@ -6,7 +6,7 @@
  * Time: 15:07
  */
 
-error_reporting(0);
+// error_reporting(0);
 include('request_handler.php');
 
 $response = GET(
@@ -54,8 +54,8 @@ $response = GET(
         <h1 style="margin-bottom: 30px">quest1onmark's extremely useful connection searcher</h1>
         <div class="col-12 shadow p-3 mb-5 bg-light rounded">
             <?php
-            echo "<h3>From " . $response['connections'][0]['from'] . " to " . $response['connections'][0]['to'] . "</h3><br><p>" . $response['description'] . "</p>";
             if (isset($response['connections'][0])) {
+                echo "<h3>From " . $response['connections'][0]['from'] . " to " . $response['connections'][0]['to'] . "</h3><br><p>" . $response['description'] . "</p>";
                 ?>
                 <table class="table table-light">
                     <thead class="thead-dark">
