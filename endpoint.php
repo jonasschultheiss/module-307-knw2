@@ -57,6 +57,7 @@ $response = GET(
             if (isset($response['connections'][0])) {
                 echo "<h3>From " . $response['connections'][0]['from'] . " to " . $response['connections'][0]['to'] . "</h3><br><p>" . $response['description'] . "</p>";
                 ?>
+                <div class="table-responsive">
                 <table class="table table-light">
                     <thead class="thead-dark">
                     <tr>
@@ -181,6 +182,7 @@ $response = GET(
                     <?php } ?>
 
                 </table>
+            </div>
                 <?php
             } else {
                 echo "<div class=\"alert alert-danger\" role=\"alert\"><h3>No Connections found.</h3><p>Make sure you entered valid information.</p></div>";
